@@ -4,8 +4,10 @@ export default function cleanSet(set, startString) {
     return '';
   }
 
-  return [...set]
+  const arr = [...set]
     .filter((item) => item.startsWith(startString))
     .map((item) => item.slice(startString.length))
-    .join('-');
+    .filter((item) => item !== '');
+
+  return arr.join('-');
 }
