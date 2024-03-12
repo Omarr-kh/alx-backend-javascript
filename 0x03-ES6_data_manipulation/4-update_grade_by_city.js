@@ -1,14 +1,16 @@
 export default function updateStudentGradeByCity(students, city, newGrades) {
-  return students.map((student) => {
-    // Create a new object to avoid modifying the original parameter
-    const updatedStudent = { ...student };
+  return students
+    .filter((student) => student.location === city)
+    .map((student) => {
+      let grade = 'N/A';
+      const newStu = { ...student };
 
-    if (updatedStudent.location === city) {
-      const matchingGrade = newGrades.find((newGrade) => newGrade.studentId === updatedStudent.id);
-
-      updatedStudent.grade = matchingGrade ? matchingGrade.grade : 'N/A';
-    }
-
-    return updatedStudent;
-  });
+      newGrades.forEach((newGrade) => {
+        if (newGrade.studentId === newStu.id) {
+          grade = newGrade.grade;
+        }
+      });
+      newStu.grade = grade;
+      return newStu;
+    });
 }
