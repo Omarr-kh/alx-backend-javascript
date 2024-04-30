@@ -1,5 +1,10 @@
 const fs = require('fs');
 
+/* Read Database CSV file sync
+ *
+ * Count the number of students
+ * Count the number of students in each field and print their names
+ */
 const countStudents = (path) => {
   try {
     data = fs.readFileSync(path, 'utf8');
